@@ -1,0 +1,46 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class CurrencyConverter {
+    public static void main(String[] args) {
+        double amount;
+        double convertedAmount;
+
+        // Define the conversion rates
+        Map<String, Double> conversionRates = new HashMap<>();
+        conversionRates.put("USD", 1.0);
+        conversionRates.put("EUR", 0.85);
+        conversionRates.put("GBP", 0.72);
+        conversionRates.put("JPY", 110.02);
+
+        // Create a Scanner object to read user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter the amount
+        System.out.print("Enter the amount: ");
+        amount = scanner.nextDouble();
+
+        // Prompt the user to enter the source currency
+        System.out.print("Enter the source currency (e.g., USD): ");
+        String sourceCurrency = scanner.next().toUpperCase();
+
+        // Prompt the user to enter the target currency
+        System.out.print("Enter the target currency (e.g., EUR): ");
+        String targetCurrency = scanner.next().toUpperCase();
+
+        // Check if the source and target currencies are valid
+        if (!conversionRates.containsKey(sourceCurrency) || !conversionRates.containsKey(targetCurrency)) {
+            System.out.println("Invalid currencies!");
+            return;
+        }
+
+        // Perform the conversion
+        double sourceToUsdRate = conversionRates.get(sourceCurrency);
+        double usdToTargetRate = conversionRates.get(targetCurrency);
+        convertedAmount = amount * (usdToTargetRate / sourceToUsdRate);
+
+        // Display the converted amount
+        System.out.println("Converted amount: " + convertedAmount + " " + targetCurrency);
+    }
+}
