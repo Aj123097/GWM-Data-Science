@@ -1,5 +1,5 @@
 import random
-
+ 
 board = [' '] * 10
 computer = 'X'
 human = 'O'
